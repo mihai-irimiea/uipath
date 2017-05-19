@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ResourceComponent } from '../resource/resource.component';
 
 
 @Component({
