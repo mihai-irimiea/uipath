@@ -1,0 +1,49 @@
+
+<div class="robots-container">
+  <table>
+  <thead>
+    <tr>
+      <!--<th *ngFor="let property of properties">{{ property }}</th>-->
+      <th>
+        <input type="checkbox" (click)="handleSelection($event)">
+      </th>
+      <th>
+        Name
+      </th>
+      <th >
+        <i class="material-icons" (click)="sortBy('machine')">arrow_drop_up</i> Machine
+      </th>
+      <th>
+        <i class="material-icons" (click)="sortBy('tasks')">arrow_drop_up</i> Tasks
+      </th>
+      <th>
+        Description
+      </th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let robot of robots; let isEven = even; let isOdd = odd;" 
+        robot [robot]="robot" 
+        [properties]="properties"
+        [class.odd]="isOdd"   
+        [class.even]="isEven"
+    ></tr>
+  </tbody>
+</table>
+<div class="robots-container__actions">
+  <button>
+    <i class="material-icons">add</i>
+  </button>
+  <button>
+    <i class="material-icons">remove</i>
+  </button>
+  <button>
+    Group
+  </button>
+</div>
+</div>
+
+
+

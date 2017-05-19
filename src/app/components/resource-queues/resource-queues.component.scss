@@ -1,0 +1,23 @@
+table{
+    width: 100%;
+    // min-height: 226px;
+}
+thead{
+    background-color: #D7CCC8;
+}
+th{
+    text-transform: capitalize;
+    padding: 3px 10px;
+}
+
+tr.odd{
+    // background-color: #EEEEEE;
+
+}
+tr:nth-child(odd){
+    background-color: #EEEEEE;
+}
+td{
+    padding: 3px 10px;
+    vertical-align: middle;
+}

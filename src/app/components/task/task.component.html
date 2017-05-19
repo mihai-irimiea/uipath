@@ -1,0 +1,21 @@
+<!--<td *ngFor="let property of properties;">{{task[property]}}</td>-->
+
+
+<td>
+ <div class="task-status" [class.active]="task.status"></div> <span>{{ task.name }}</span>
+</td>
+<td>
+  {{ task.robots }}
+</td>
+<td>
+  {{ task.started }}
+</td>
+<td>
+  {{ task.ended }}
+</td>
+<td class="text-center">
+  <i class="material-icons">schedule</i>
+</td>
+<td>
+  <i class="material-icons">info</i>
+</td>

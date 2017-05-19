@@ -1,0 +1,47 @@
+
+.robots-container{
+    padding-left: 70px;
+    background-color: #D7CCC8;
+    &__actions{
+        background-color: #EEEEEE;
+        margin-left: -70px;
+        padding-left: 140px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        i{
+            font-size: 16px;
+            vertical-align: middle;
+        }
+        button{
+            padding: 0 15px;
+            height: 25px;
+            border: none;
+            background-color: #F5F5F5;
+            &:hover{
+                background-color: darken(#F5F5F5,5);
+            }
+        }
+    }
+}
+table{
+    width: 100%;
+    background-color: white;
+    // padding-left: 60px;
+}
+thead{
+    background-color: #D7CCC8;
+}
+th{
+    text-transform: capitalize;
+    // text-align: center;
+    padding: 3px 10px;
+    i{
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+}
+
+tr.odd{
+    background-color: #F5F5F5;
+}

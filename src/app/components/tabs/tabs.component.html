@@ -1,0 +1,10 @@
+<div [class.subtabs-container]="isSubTab">
+  <ul class="resources" [class.subtab]="isSubTab">
+  <li *ngIf="!isSubTab"><i class="material-icons">keyboard_arrow_down</i></li>
+  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
+    <i class="material-icons">{{ tab.tabIcon }}</i> {{tab.tabTitle}}
+  </li>
+  <li *ngIf="!isSubTab" class="settings"><i class="material-icons">settings</i></li>
+</ul>
+<ng-content></ng-content>
+</div>

@@ -1,0 +1,22 @@
+table{
+    width: 100%;
+}
+thead{
+    background-color: #D7CCC8;
+}
+th{
+    text-transform: capitalize;
+    // text-align: center;
+    padding: 3px 10px;
+}
+
+tr.odd{
+    background-color: #EEEEEE;
+
+}
+
+td{
+    &.text-center{
+        text-align: center;
+    }
+}

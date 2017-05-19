@@ -1,0 +1,29 @@
+td{
+    padding: 10px;
+    &.text-center{
+        text-align: center;
+    }
+}
+
+
+.task-status{
+    display: inline-block;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background-color: #E57373;
+    vertical-align: middle;
+    &.active{
+        background-color: #81C784;
+    }
+}
+span{
+    vertical-align: middle;
+}
+.material-icons{
+    color: rgba(#888888, 0.4);
+    cursor: pointer;
+    &:hover{
+        color: rgba(#888888,0.7);
+    }
+}

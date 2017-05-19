@@ -1,0 +1,28 @@
+<!--<p>
+  {{ robot.name }}
+</p>-->
+<!--<td *ngFor="let prop of properties">
+  aa {{prop}}
+</td>-->
+<!--<td *ngFor="let property of properties;">{{robot[property]}}</td>
+-->
+
+<td>
+  <input type="checkbox" [checked]="robot.isSelected">
+</td>
+<td>
+ <div class="robot-status" [class.active]="robot.isActive"></div> <span>{{ robot.name }}</span>
+</td>
+<td>
+  {{ robot.machine }}
+</td>
+<td>
+  {{ robot.tasks }}
+</td>
+<td>
+  {{ robot.description }}
+</td>
+<td>
+  <i class="material-icons">border_color</i>
+</td>
+
