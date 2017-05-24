@@ -16,3 +16,18 @@ export class Robot {
         this.isActive = false;
     }
 }
+
+export class Group{
+    name: string;
+    isExpanded: boolean;
+    robots: Robot;
+
+    
+    constructor(name, isExpanded, robots){
+        this.name = name;
+        this.isExpanded = isExpanded;
+        this.robots = robots;
+
+    }
+
+}

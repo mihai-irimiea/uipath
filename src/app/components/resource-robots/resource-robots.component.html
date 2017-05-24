@@ -1,5 +1,6 @@
 
 <div class="robots-container">
+  
   <table>
   <thead>
     <tr>
@@ -10,6 +11,7 @@
       <th>
         Name
       </th>
+      <th>Group</th>
       <th >
         <i class="material-icons" (click)="sortBy('machine')">arrow_drop_up</i> Machine
       </th>
@@ -23,26 +25,60 @@
 
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let robot of robots; let isEven = even; let isOdd = odd;" 
+  <!--<tr *ngFor="let robot of robots; let isEven = even; let isOdd = odd;" 
         robot [robot]="robot" 
         [properties]="properties"
         [class.odd]="isOdd"   
-        [class.even]="isEven"
-    ></tr>
+         [class.even]="isEven" >
+        </tr>-->
+  <tbody *ngFor="let group of groups">
+    <tr
+    [class.odd]="isOdd"   
+      [class.even]="isEven"
+    >
+    
+      <td>
+        <input type="checkbox" (click)="toggleRobotsInGroup()">
+      </td>
+      <td colspan="3">
+        <i class="material-icons" (click)="group.isExpanded = !group.isExpanded">indeterminate_check_box</i>
+        <b>{{ group.name }} ({{group.robots.length}} bots)</b>
+      </td>
+      <td>
+        Hard task
+      </td>
+      <td></td>
+      <td>
+        <i class="material-icons">border_color</i>
+      </td>
+    </tr>
+    <ng-container *ngIf="group.isExpanded">
+      <tr *ngFor="let robot of group.robots; let isEven = even; let isOdd = odd;" robot [robot]="robot" [properties]="properties" [class.odd]="isOdd"
+      [class.even]="isEven"></tr>
+    </ng-container>
   </tbody>
-</table>
-<div class="robots-container__actions">
-  <button>
+  </table>
+  <div class="robots-container__actions">
+    <button>
     <i class="material-icons">add</i>
   </button>
-  <button>
+    <button>
     <i class="material-icons">remove</i>
   </button>
-  <button>
+    <button>
     Group
   </button>
 </div>
+<ul>
+    <li *ngFor="let group of groups">
+      <h4>{{ group.name }}</h4>
+            <ul *ngIf="group.robots.length">
+              <li *ngFor="let robot of group.robots">
+                {{ robot.name }}
+              </li>
+            </ul>
+    </li>
+</ul>
 </div>
 
 

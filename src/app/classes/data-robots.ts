@@ -6,7 +6,7 @@ export const ROBOTS: Robot[]=[
         "machine": "Machine C",
         "tasks": "A",
         "description": "short description",
-        "group": "BotnetGroup",
+        "group": "Botosani",
         "isSelected": false
     },
     {
@@ -15,7 +15,7 @@ export const ROBOTS: Robot[]=[
         "machine": "Machine B",
         "tasks": "C",
         "description": "short description",
-        "group": "BotnetGroup",
+        "group": "Botosani",
         "isSelected": true
     },
     {
@@ -51,7 +51,7 @@ export const ROBOTS: Robot[]=[
         "machine": "Machine Beta",
         "tasks": "A",
         "description": "short description",
-        "group": "Botosani",
+        "group": "",
         "isSelected": false
     }
 ];

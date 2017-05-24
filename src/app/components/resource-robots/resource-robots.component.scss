@@ -45,3 +45,24 @@ th{
 tr.odd{
     background-color: #F5F5F5;
 }
+td{
+    padding: 10px;
+}
+.material-icons{
+    vertical-align: middle;
+    
+    cursor: pointer;
+    
+}
+td:last-child{
+    .material-icons{
+        color: rgba(#888888, 0.4);
+        &:hover{
+        color: rgba(#888888,0.7);
+    }
+    }
+}
+
+b{
+    color: blue;
+}
