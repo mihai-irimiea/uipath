@@ -145,6 +145,7 @@ export class ResourceRobotsComponent implements OnInit {
       }
     }
     this.regroup = false;
+    this.newGroup = '';
   }
 
   createGroup(){
@@ -152,6 +153,7 @@ export class ResourceRobotsComponent implements OnInit {
     this.selectedGroupForChange = this.newGroup;
     this.assignRobotsToGroup();
     this.regroup = false;
+    this.newGroup = '';
   }
 
   deleteEmptyGroups(){
