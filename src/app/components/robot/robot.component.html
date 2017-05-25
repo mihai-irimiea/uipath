@@ -8,12 +8,13 @@
 -->
 
 <td>
-  <input type="checkbox" [checked]="robot.isSelected">
+  <input type="checkbox" [(ngModel)]="robot.isSelected">
 </td>
-<td>
- <div class="robot-status" [class.active]="robot.isActive"></div> <span>{{ robot.name }}</span>
+<td [class.hasGroup]="robot.group && (robot.group != 'ungroupedRobots')">
+  <div class="robot-status" [class.active]="robot.isActive" [class.orange]="robot.isSelected">
+  </div> <span>{{ robot.name }}</span>
 </td>
-<td>{{ robot.group }}</td>
+<td>{{ robot.group != 'ungroupedRobots'? robot.group : '' }}</td>
 <td>
   {{ robot.machine }}
 </td>
@@ -26,4 +27,3 @@
 <td>
   <i class="material-icons">border_color</i>
 </td>
-

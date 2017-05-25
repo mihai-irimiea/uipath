@@ -4,7 +4,6 @@
   <table>
   <thead>
     <tr>
-      <!--<th *ngFor="let property of properties">{{ property }}</th>-->
       <th>
         <input type="checkbox" (click)="handleSelection($event)">
       </th>
@@ -25,23 +24,18 @@
 
     </tr>
   </thead>
-  <!--<tr *ngFor="let robot of robots; let isEven = even; let isOdd = odd;" 
-        robot [robot]="robot" 
-        [properties]="properties"
-        [class.odd]="isOdd"   
-         [class.even]="isEven" >
-        </tr>-->
+  
   <tbody *ngFor="let group of groups">
-    <tr
+    <tr *ngIf="group.name != 'ungroupedRobots'"
     [class.odd]="isOdd"   
       [class.even]="isEven"
     >
     
       <td>
-        <input type="checkbox" (click)="toggleRobotsInGroup()">
+        <input type="checkbox" (click)="toggleRobotsInGroup($event, group)">
       </td>
       <td colspan="3">
-        <i class="material-icons" (click)="group.isExpanded = !group.isExpanded">indeterminate_check_box</i>
+        <i class="material-icons" (click)="group.isExpanded = !group.isExpanded">{{group.isExpanded? 'indeterminate_check_box' : 'add_box'}}</i>
         <b>{{ group.name }} ({{group.robots.length}} bots)</b>
       </td>
       <td>
@@ -59,26 +53,70 @@
   </tbody>
   </table>
   <div class="robots-container__actions">
-    <button>
+    <button (click)="openNewRobots()">
     <i class="material-icons">add</i>
   </button>
-    <button>
+    <button (click)="removeRobots()">
     <i class="material-icons">remove</i>
   </button>
-    <button>
+    <button (click)="regroup = true">
     Group
   </button>
 </div>
-<ul>
-    <li *ngFor="let group of groups">
-      <h4>{{ group.name }}</h4>
-            <ul *ngIf="group.robots.length">
-              <li *ngFor="let robot of group.robots">
-                {{ robot.name }}
-              </li>
-            </ul>
-    </li>
-</ul>
+<div *ngIf="newRobots" class='overlay'>
+  <div class="add-robots">
+    <h3>Available robots to add:</h3>
+    <hr/>
+    <ul *ngFor="let robot of robots">
+      <li *ngIf="!robot.tasks">
+        <label>
+            <input type="checkbox" [(ngModel)]="robot.isSelected"> <i class="material-icons" [class.selected]="robot.isSelected">android</i> <span>{{ robot.name}}</span>
+          </label>
+      </li>
+    </ul>
+
+    <ng-container *ngIf="groups.length">
+      <hr>
+      <div>
+        <p>Add the robot(s) into an existing group( optional )</p>
+        <p>
+          <select [ngModel]="selectedGroupForNewRobots" (ngModelChange)="selectedGroupForNewRobots=$event">
+              <!--<option value="select">-</option>-->
+              <option *ngFor="let group of groups" value={{group.name}} selected="group.name == 'ungroupedRobots'">{{ group.name== 'ungroupedRobots'? '-' : group.name}}</option>
+          </select>
+        </p>
+      </div>
+    </ng-container>
+
+    <button class="btn" (click)="addRobots()">Add robots</button>
+    <button class="btn btn--warning" (click)="newRobots = false">Cancel</button>
+  </div>
+</div>
+
+<div *ngIf="regroup" class='overlay'>
+  <div class="group-robots">
+    <h3>Assign these robots to an available group</h3>
+    <p>
+          <select [ngModel]="selectedGroupForChange" (ngModelChange)="selectedGroupForChange=$event">
+              <!--<option value="select">-</option>-->
+              <option *ngFor="let group of groups" value={{group.name}} selected="group.name == 'ungroupedRobots'">{{ group.name== 'ungroupedRobots'? '-' : group.name}}</option>
+          </select>
+     </p>
+     <button class="btn" (click)="assignRobotsToGroup()">Assign</button>
+     <hr>
+     <span>or</span>
+     <h3>Create a new group</h3>
+    <hr/>
+    <input type="text" [(ngModel)]="newGroup">
+    
+
+
+    <button class="btn" (click)="createGroup()">Create Group and Assign Robots</button>
+    <hr>
+    <button class="btn btn--warning pull-right" (click)="regroup = false">Close window</button>
+  </div>
+</div>
+
 </div>
 
 

@@ -14,9 +14,15 @@ export class ResourceRobotsComponent implements OnInit {
   icon = "android";
   robots: Robot[];
   properties = [];
-  groups: Group[];
+  groups: any[];
 
-  testRobots: Robot[];
+  newRobots: boolean = false;
+  selectedGroupForNewRobots = 'ungroupedRobots';
+  regroup: boolean = false;
+  selectedGroupForChange = 'ungroupedRobots';
+  newGroup: any = '';
+
+
   
 
   constructor(private robotsService: RobotsService) { }
@@ -38,6 +44,11 @@ export class ResourceRobotsComponent implements OnInit {
     }
   }
 
+  toggleRobotsInGroup($event, group){
+      for(let robot of group.robots){
+        robot.isSelected = $event.target.checked;
+      }
+  }
 
   sortBy(sortString) {
     this.robots.sort(function (name1, name2) {
@@ -51,6 +62,120 @@ export class ResourceRobotsComponent implements OnInit {
     });
 
   }
+  removeRobots(): void{
+    for (let group of this.groups){
+      
+      for (var i = 0; i < group.robots.length; i++) {
+        var robot = group.robots[i];
+
+        if (robot.isSelected) {
+          //  robot.name 
+
+          let _robo = this.robots.find(x =>x.name === robot.name);
+          _robo.tasks = '';
+          _robo.isSelected = false;
+          console.log(_robo.name + ' with index : deleted');
+          
+
+          group.robots.splice(i, 1);
+
+          
+
+          i--;
+        }
+      }
+    }
+    this.deleteEmptyGroups();
+  }
+  openNewRobots(){
+    // console.log('opening new robots window');
+    this.newRobots = true;
+  }
+
+
+  addRobots(){
+    let _groupIndex = this.groups.findIndex(x => x.name === this.selectedGroupForNewRobots);
+    console.log(_groupIndex);
+
+
+    for(let robot of this.robots){
+        if(!robot.tasks && robot.isSelected){
+
+          robot.group= this.selectedGroupForNewRobots;
+          robot.tasks= 'A';
+          
+          console.log('adding ' + robot.name);
+          console.log('with group: ' + this.selectedGroupForNewRobots);
+          this.groups[_groupIndex]['robots'].push(robot);     
+
+          robot.isSelected = false;
+        }
+    }
+    this.newRobots = false;
+    this.selectedGroupForNewRobots = 'ungroupedRobots';
+
+  }
+
+  assignRobotsToGroup(){
+    console.log('new group assigned to selected robots is: ' + this.selectedGroupForChange);
+    let _groupIndex = this.groups.findIndex(x => x.name === this.selectedGroupForChange);
+
+    for (let group of this.groups){
+      
+      for (var i = 0; i < group.robots.length; i++) {
+        var robot = group.robots[i];
+
+        if (robot.isSelected) {
+          //  robot.name 
+
+          let _robo = this.robots.find(x =>x.name === robot.name);
+          _robo.group = this.selectedGroupForChange;
+          _robo.isSelected = false;
+          this.groups[_groupIndex].robots.push(_robo);
+
+          console.log(_robo.name + ' is now part of: ' + this.selectedGroupForChange);
+          
+
+          group.robots.splice(i, 1);
+
+          
+
+          i--;
+        }
+      }
+    }
+    this.regroup = false;
+  }
+
+  createGroup(){
+    this.groups.push(new Group(this.newGroup, true, []));
+    this.selectedGroupForChange = this.newGroup;
+    this.assignRobotsToGroup();
+    this.regroup = false;
+  }
+
+  deleteEmptyGroups(){
+    for (var i = 0; i < this.groups.length; i++) {
+        var group = this.groups[i];
+
+        if (group.name != 'ungroupedRobots' && !group.robots.length) {
+          //  robot.name 
+
+          
+
+          console.log('deleting group: ' + group.name);
+          
+
+          this.groups.splice(i, 1);
+
+          
+
+          i--;
+        }
+      }
+
+  }
+
 
   makeGroups(grobots) {
 
@@ -59,13 +184,9 @@ export class ResourceRobotsComponent implements OnInit {
 
     for (let robot of grobots) {
 
-      //let's create' an empty group object each time we loop a new robot, in case we need to add new group in the groupes list
-      // let obj = {
-      //   //name will be added later
-      //   "visible": false,
-      //   "robots": []
-      // }
+      // A robot must have a task in order to be active an be included in the table
 
+      
       //if the robot has a group, loop through all the groups to see if robot's group matches any
 
               // if we find a match, add the robot to that group's array of robots
@@ -76,7 +197,7 @@ export class ResourceRobotsComponent implements OnInit {
       // if the robot doesn't have a group, we add the robot into the 'ungroupedRobots' group
 
 
-      if (robot.group) {
+      if (robot.group && robot.tasks) {
 
         let robotHasNewGroup = true;
 
@@ -97,7 +218,7 @@ export class ResourceRobotsComponent implements OnInit {
 
 
       }
-      else {
+      else if(robot.tasks) {
         groups[0].robots.push(robot);
       }
 
@@ -105,9 +226,11 @@ export class ResourceRobotsComponent implements OnInit {
     }
 
     this.groups = groups;
-    this.testRobots = grobots;
 
   }
+
+
+
 
 
   ngOnInit() {

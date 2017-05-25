@@ -16,7 +16,7 @@ export const ROBOTS: Robot[]=[
         "tasks": "C",
         "description": "short description",
         "group": "Botosani",
-        "isSelected": true
+        "isSelected": false
     },
     {
         "name": "Botescu",
@@ -34,7 +34,7 @@ export const ROBOTS: Robot[]=[
         "tasks": "V",
         "description": "short description",
         "group": "BotnetGroup",
-        "isSelected": true
+        "isSelected": false
     },
     {
         "name": "Botgros",
@@ -43,13 +43,49 @@ export const ROBOTS: Robot[]=[
         "tasks": "A",
         "description": "short description",
         "group": "BotnetGroup",
-        "isSelected": true
+        "isSelected": false
     },
     {
         "name": "Slobot",
         "isActive" : true,
         "machine": "Machine Beta",
         "tasks": "A",
+        "description": "short description",
+        "group": "",
+        "isSelected": false
+    },
+    {
+        "name": "Botnar",
+        "isActive" : true,
+        "machine": "Machine Beta",
+        "tasks": "",
+        "description": "short description",
+        "group": "",
+        "isSelected": false
+    },
+    {
+        "name": "Johnnybot",
+        "isActive" : true,
+        "machine": "Machine Beta",
+        "tasks": "",
+        "description": "short description",
+        "group": "",
+        "isSelected": false
+    },
+    {
+        "name": "Botelvis",
+        "isActive" : true,
+        "machine": "Machine Beta",
+        "tasks": "",
+        "description": "short description",
+        "group": "",
+        "isSelected": false
+    },
+    {
+        "name": "Robodisco",
+        "isActive" : true,
+        "machine": "Machine Beta",
+        "tasks": "",
         "description": "short description",
         "group": "",
         "isSelected": false

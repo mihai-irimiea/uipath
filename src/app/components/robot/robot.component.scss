@@ -1,5 +1,8 @@
 td{
     padding: 10px;
+    &.hasGroup{
+        padding-left: 40px;
+    }
 }
 
 .robot-status{
@@ -11,7 +14,11 @@ td{
     vertical-align: middle;
     &.active{
         background-color: #81C784;
+        
     }
+    &.orange{
+            background-color: orange;
+        }
 }
 span{
     vertical-align: middle;

@@ -21,7 +21,6 @@ export class Group{
     name: string;
     isExpanded: boolean;
     robots: Robot;
-
     
     constructor(name, isExpanded, robots){
         this.name = name;

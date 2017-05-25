@@ -10,7 +10,7 @@ export class RobotComponent implements OnInit {
   @Input()
   robot = Robot;
   @Input()
-  properties = [];
+  properties = []; 
 
 
   constructor() { }

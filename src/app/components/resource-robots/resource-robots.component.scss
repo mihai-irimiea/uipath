@@ -66,3 +66,29 @@ td:last-child{
 b{
     color: blue;
 }
+
+.add-robots, .group-robots{
+    
+    width: 600px;
+    min-height: 400px;
+    background-color: white;
+    padding: 10px 30px;
+    span{
+        vertical-align: middle;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+    }
+    i{
+        font-size: 14px;
+        &.selected{
+            color: #00E676;
+        }
+    }
+    input{
+        vertical-align: middle;
+        margin: 0;
+        margin-right: 10px;
+    }
+}
